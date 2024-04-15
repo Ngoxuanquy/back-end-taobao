@@ -36,7 +36,7 @@ require('winston-mongodb');
 const {db: {host, name, port, username, password}} = require('./config')
 const connectString = `mongodb://${username}:${password}@${host}:${port}/${name}?authSource=admin`;
 const configLogMongoDB = new transports.MongoDB({
-    level : "warn",
+    level : "error",
     db : connectString,
     options:{
         ignoreUndefined: true,

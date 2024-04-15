@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const _Otp = require('../models/otp.model')
+const {BusinessLogicError} = require("../core/error.response");
 
 let that = module.exports = {
     insertOtp: async ({
@@ -44,5 +45,25 @@ let that = module.exports = {
         } catch (e) {
             console.log(e)
         }
+    },
+    newOtp: async ({email}) => {
+        const token = generatorTokenRandom()
+        return await _Otp.create({
+            otp_token: token,
+            otp_email: email
+        })
+    },
+    checkEmailToken: async ({token}) => {
+        // check token in model otp
+        const tokenFound = await _Otp.findOne({
+            otp_token: token
+        })
+
+        if (!tokenFound) throw new BusinessLogicError('Token not found')
+
+        // delete from model
+        await _Otp.deleteOne({otp_token: token})
+
+        return true;
     }
 }

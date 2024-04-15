@@ -19,6 +19,7 @@
 - [ ] Dockerfile, docker-compose for dev and test
 - [ ] Deployment with jenkins or circleCI
 - [ ] Add discord push notify
+
 ## Setup lib project
     - express
     - helmet
@@ -150,8 +151,9 @@
 ### Caching with redis
     npm i redis@3.1.1 --save
 
-### Message broker - ActiveMQ
-
+### Message broker - RabbitMQ
+    - exchange
+    - queue
 
 ### Logger
     npm i winston express-winston winston-mongodb
