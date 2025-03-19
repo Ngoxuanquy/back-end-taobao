@@ -13,7 +13,17 @@ Content-Type: application/json
 x-api-key: 87eaea1754825b4a90e5207db1bf1b9675d7144f462addac44de9c62f3093180f6c404f6ce4541f50df7ebe35e8f1d01dde1fa1677b4d496f26803e519294000
 
 {
-    "email": "ngoxuanquy06@gmail.com",
+    "email": "ngoxuanquy01@gmail.com",
+    "password": "1"
+}
+
+###
+POST {{url_dev}}/shop/login
+Content-Type: application/json 
+x-api-key: 87eaea1754825b4a90e5207db1bf1b9675d7144f462addac44de9c62f3093180f6c404f6ce4541f50df7ebe35e8f1d01dde1fa1677b4d496f26803e519294000
+
+{
+    "email": "ngoxuanquy01@gmail.com",
     "password": "1"
 }
 
@@ -23,7 +33,33 @@ Content-Type: application/json
 x-api-key: 87eaea1754825b4a90e5207db1bf1b9675d7144f462addac44de9c62f3093180f6c404f6ce4541f50df7ebe35e8f1d01dde1fa1677b4d496f26803e519294000
 
 {
-    "email": "ngoxuanquy06@gmail.com",
+    "email": "ngoxuanquy01@gmail.com",
     "password": "1",
-    "code": "rEHkTG"
+    "code": "qK8OoY"
+}
+###
+POST {{url_dev}}/product/getAll
+Content-Type: application/json
+x-api-key: 87eaea1754825b4a90e5207db1bf1b9675d7144f462addac44de9c62f3093180f6c404f6ce4541f50df7ebe35e8f1d01dde1fa1677b4d496f26803e519294000
+
+
+###
+post {{url_dev}}/product
+Content-Type: application/json
+x-api-key: 87eaea1754825b4a90e5207db1bf1b9675d7144f462addac44de9c62f3093180f6c404f6ce4541f50df7ebe35e8f1d01dde1fa1677b4d496f26803e519294000
+x-client-id: 67d7c90187b4af33fb32f2d8
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q3YzkwMTg3YjRhZjMzZmIzMmYyZDgiLCJlbWFpbCI6Im5nb3h1YW5xdXkwMUBnbWFpbC5jb20iLCJpYXQiOjE3NDIzNzcyMDMsImV4cCI6MTc0MjU1MDAwM30.-0PciQuLTABtIHmDFY3_IVhTHvHp-3xHY4qilU2AYyM
+
+{
+    "product_name": "test101",
+    "product_thumb": "123a", 
+    "product_description": "aa",
+    "product_price": 600,
+    "product_type": "Electronics",
+    "product_quantity": 5,
+    "product_attributes": {
+        "manufacturer": "quy",
+        "size": "L",
+        "color": "Denim"
+}
 }
