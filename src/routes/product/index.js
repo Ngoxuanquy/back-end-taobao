@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get('/getAll', asyncHandler(productController.getproductAll));
 
+router.get('/getDetail/:product_id', asyncHandler(productController.getDetailProductById));
+
 router.post('/', asyncHandler(productController.createProduct));
 
 module.exports = router;
