@@ -31,12 +31,14 @@ app.use(
   cors({
     origin: "*", // Địa chỉ của React app
     methods: ["GET", "POST", "PATCH", "DELETE"],
+    allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization,x-api-key",
     credentials: true,
   })
 );
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(compression());
+app.options("*", cors());
 
 // init db
 

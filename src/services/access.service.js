@@ -139,7 +139,7 @@ class AccessService {
             foundShop,
           ),
           tokens,
-          status: 'Đăng Nhập Thành Công1',
+          status: 'Đăng Nhập Thành Công',
         };
       } else {
         return {
@@ -184,7 +184,7 @@ class AccessService {
             holderShop,
           ),
           tokens,
-          status: 'Đăng Nhập Thành Công1',
+          status: 'Đăng Nhập Thành Công',
         };
       }
 
