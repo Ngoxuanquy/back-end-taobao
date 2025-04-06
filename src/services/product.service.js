@@ -20,7 +20,11 @@ const {
   deleteProductById,
   updateQuantity,
 } = require('../models/repositories/product.repo');
-const { removeUndefinedObject, updateNestedObjectParser } = require('../utils');
+const {
+  removeUndefinedObject,
+  updateNestedObjectParser,
+  convertToObjectIdMongodb,
+} = require('../utils');
 
 class ProductFactory {
   // create
@@ -41,6 +45,28 @@ class ProductFactory {
     return new productClass(payload).createProduct();
   }
 
+  static async getDetailProductById({ product_id }) {
+    try {
+      console.log({ product_id });
+      if (!product_id) {
+        return 'Product ID không hợp lệ';
+      }
+      console.log(convertToObjectIdMongodb(product_id));
+      const productDetail = await product
+        .findOne({ _id: convertToObjectIdMongodb(product_id) })
+        .lean();
+      if (!productDetail) {
+        return 'Sản phẩm không tìm thấy';
+      }
+
+      console.log({ productDetail });
+
+      return productDetail;
+    } catch (error) {
+      console.error('Error getting product detail:', error);
+      return 'Lỗi hệ thống, vui lòng thử lại sau';
+    }
+  }
   // end create
 
   static async updateProduct(payload) {
