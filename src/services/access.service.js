@@ -15,7 +15,7 @@ const {
 const { findByEmail } = require('./shop.service');
 const randomstring = require('randomstring');
 const usersModel = require('../models/users.model');
-const redis = require('../redis');
+const { redis } = require('../redis');
 const RoleShop = {
   SHOP: 'SHOP',
   WRITER: 'WRITER',
@@ -286,29 +286,35 @@ class AccessService {
     console.log({ user });
     return user.roles;
   }
-
   static signUp = async ({ name, email, password }) => {
     try {
+      console.log({ email });
+
       // Check if email already exists
       const holderShop = await usersModel.findOne({ email }).lean();
       if (holderShop) {
         return {
-          msg: 'Email đã được đăng ký!!',
+          msg: 'Email đã được đăng ký!!', // "Email already registered!!"
         };
       }
 
-      // If email does not exist, proceed with signup logic
+      // Generate verification code
       const verificationCode = randomstring.generate(6);
+
+      // Create reusable transporter object
       const transporter = nodemailer.createTransport({
         service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587, // Use 587 for TLS
+        secure: false, // True for 465, false for other ports
         auth: {
           user: 'ngoxuanquy1812@gmail.com',
-          pass: 'bgoz fvvx raus cqjo', // Consider using environment variables for sensitive information
+          pass: 'bgoz fvvx raus cqjo', // App-specific password
         },
       });
 
       const mailOptions = {
-        from: 'ngoxuanquy1812@gmail.com',
+        from: '"Your App Name" <ngoxuanquy1812@gmail.com>',
         to: email,
         subject: 'Verification Code',
         text: `Your verification code is: ${verificationCode}`,
@@ -317,33 +323,34 @@ class AccessService {
       // Send verification code via email
       try {
         const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent:', info);
+        console.log('Email sent:', info.response);
 
-        // Save verification code to database
-        await redis.setex(`verify:${email}`, 60, verificationCode);
+        // Save verification code to Redis with 60-second expiration
+        await redis.set(`verify:${email}`, verificationCode, { ex: 60 });
         console.log(`Verification code for ${email} saved to Redis`);
+
+        // Không cần transporter.close() vì nodemailer tự quản lý kết nối
 
         return {
           code: 200,
-          metadata: null,
+          metadata: 'check mail để nhận mã',
         };
-      } catch (error) {
-        console.error('Error sending email:', error);
-
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
         return {
-          msg: 'Email không tồn tại!!',
+          msg: 'Lỗi khi gửi email, vui lòng thử lại!!', // "Error sending email, please try again!!"
         };
       }
     } catch (error) {
       console.error('Database error:', error);
-
       return {
-        code: 'xxx',
+        code: '500',
         msg: error.message,
         status: 'error',
       };
     }
   };
+
   static ResetPasswords = async ({ email, currentPassword, newPassword }) => {
     try {
       console.log('abcbcbcbc');

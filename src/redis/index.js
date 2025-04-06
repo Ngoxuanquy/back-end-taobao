@@ -1,43 +1,29 @@
-const Redis = require('ioredis');
+// redis.js
+import { Redis } from '@upstash/redis';
 
-// Tạo và cấu hình Redis client
+// Khởi tạo Redis client
 const redis = new Redis({
-  host: 'redis-16421.c292.ap-southeast-1-1.ec2.redns.redis-cloud.com',
-  port: 16421,
-  username: 'default', // User (nếu Redis yêu cầu)
-  password: 'VkMWvobadobk8NbTAFNp3pT4DguN3Xp5', // Password
-  // tls: {} // Thêm nếu Redis yêu cầu TLS (thường cần với Redis Cloud)
+  url:
+    process.env.UPSTASH_REDIS_URL || 'https://exotic-antelope-35385.upstash.io',
+  token:
+    process.env.UPSTASH_REDIS_TOKEN ||
+    'AYo5AAIjcDExNDM0OTljYjFiZTE0ZTYxYWVkNzliYjc1YzBjYzFhZXAxMA',
 });
 
-// Đặt giá trị "foo" = "bar"
-redis.set('foo', 'bar', (err) => {
-  if (err) {
-    console.error('Error setting value:', err);
-    return;
+// Kiểm tra kết nối
+async function testRedisConnection() {
+  try {
+    await redis.set('test', 'Redis connection successful', { ex: 10 });
+    const result = await redis.get('test');
+    console.log('Kết nối tới Redis thành công:', result);
+    await redis.del('test');
+  } catch (error) {
+    console.error('Lỗi khi kết nối tới Redis:', error);
+    throw new Error('Không thể kết nối tới Redis');
   }
+}
 
-  // Lấy giá trị của "foo"
-  redis.get('foo', (err, result) => {
-    if (err) {
-      console.error('Error getting value:', err);
-    } else {
-      console.log(result); // In ra "bar"
-    }
+testRedisConnection();
 
-    // Đóng kết nối sau khi hoàn tất
-    redis.quit();
-  });
-});
-
-// Xử lý sự kiện kết nối
-redis.on('connect', () => {
-  console.log('Kết nối đến Redis thành công!');
-});
-
-// Xử lý lỗi
-redis.on('error', (err) => {
-  console.error('Lỗi kết nối Redis:', err);
-});
-
-// Export Redis client để sử dụng ở file khác
-module.exports = redis;
+// Export redis instance
+export { redis };
