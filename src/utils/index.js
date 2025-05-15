@@ -1,50 +1,49 @@
-const _ = require('lodash')
-const {Types} = require("mongoose")
+const _ = require('lodash');
+const { Types } = require('mongoose');
 
-const getInfoData = ({fields = [], object = {}}) => {
-    return _.pick(object, fields)
-}
+const getInfoData = ({ fields = [], object = {} }) => {
+    return _.pick(object, fields);
+};
 
 const getSelectData = (select = []) => {
-    return Object.fromEntries(select.map((el => [el, 1])))
-}
+    return Object.fromEntries(select.map(el => [el, 1]));
+};
 
 const unGetSelectData = (select = []) => {
-    return Object.fromEntries(select.map((el => [el, 0])))
-}
+    return Object.fromEntries(select.map(el => [el, 0]));
+};
 
-const checkEnable = (value) => {
-    return value === 'true'
-}
+const checkEnable = value => {
+    return value === 'true';
+};
 
 const convert2ObjectId = id => {
-    return new Types.ObjectId(id)
-}
+    return new Types.ObjectId(id);
+};
 
-const removeAttrUndefined = (object) => {
+const removeAttrUndefined = object => {
     Object.keys(object).forEach(key => {
-        if (object[key] === undefined
-            || object[key] === null) delete object[key]
-    })
+        if (object[key] === undefined || object[key] === null) delete object[key];
+    });
 
-    return object
-}
+    return object;
+};
 
 const updateNestedObjectParser = obj => {
-    const final = {}
+    const final = {};
     Object.keys(obj).forEach(i => {
         if (typeof obj[i] === 'object' && !Array.isArray(obj[i])) {
-            const response = updateNestedObjectParser(obj[i])
+            const response = updateNestedObjectParser(obj[i]);
             Object.keys(obj[i]).forEach(j => {
-                final[`${i}.${j}`] = response[j]
-            })
+                final[`${i}.${j}`] = response[j];
+            });
         } else {
-            final[i] = obj[i]
+            final[i] = obj[i];
         }
-    })
+    });
 
-    return final
-}
+    return final;
+};
 
 module.exports = {
     checkEnable,
@@ -53,5 +52,5 @@ module.exports = {
     unGetSelectData,
     removeAttrUndefined,
     updateNestedObjectParser,
-    convert2ObjectId
-}
+    convert2ObjectId,
+};

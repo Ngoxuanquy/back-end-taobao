@@ -34,7 +34,22 @@ const options = {
 
                     },
                     example: {
-                        "name": "Ta Duy Hoang",
+                        "userId": "68240f7cbf0c84453e291447",
+                        "product": 
+                         {
+                            product_name: "Quấn áo Nam siêu mát giày",
+                            product_description: "Quần áo Nam gray",
+                            product_price: 12345.000,
+                            product_type: "Clothing",
+                            product_thumb: "https://tiger01042023.s5.ap-southeast-1.amazonaws.com/PNG+image.png",
+                            product_quality: 23,
+                            product_attributes: {
+                                brand: "TTF",
+                                size: "XL",
+                                material: "Thun"
+                             }
+                         }
+                        
                     }
                 },
                 RequestUpdateCart: {
@@ -48,7 +63,7 @@ const options = {
 
                     },
                     example: {
-                        "name": "Ta Duy Hoang",
+                        "name": "Ngo Xuan Quy",
                     }
                 },
                 RequestDeleteCart: {
@@ -62,7 +77,7 @@ const options = {
 
                     },
                     example: {
-                        "name": "Ta Duy Hoang",
+                        "name": "Ngo Xuan Quy",
                     }
                 },
                 RequestRegister: {
@@ -87,8 +102,8 @@ const options = {
                         }
                     },
                     example: {
-                        "name": "Ta Duy Hoang",
-                        "email": "duyhoangaws@gmail.com",
+                        "name": "Ngo Xuan Quy",
+                        "email": "ngoxuanquy1812@gmail.com",
                         "password": "123123a@",
                         "msisdn": "0948291994"
                     }
@@ -107,7 +122,7 @@ const options = {
                         },
                     },
                     example: {
-                        "email": "duyhoangaws@gmail.com",
+                        "email": "ngoxuanquy1812@gmail.com",
                         "password": "123123a@"
                     }
                 },

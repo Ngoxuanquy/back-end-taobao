@@ -1,9 +1,5 @@
-class InventoryService  {
-
-    static addStockToInventory = async ({}) => {
-
-    }
-
+class InventoryService {
+    static addStockToInventory = async ({}) => {};
 }
 
-module.exports = InventoryService
+module.exports = InventoryService;

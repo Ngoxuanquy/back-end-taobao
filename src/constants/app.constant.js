@@ -1,7 +1,6 @@
 const AppConstant = {
     SUB_FIX_FACTORIES: '.factory.js',
-    DOT_SLASH: "./"
-}
+    DOT_SLASH: './',
+};
 
-
-module.exports = {AppConstant}
+module.exports = { AppConstant };

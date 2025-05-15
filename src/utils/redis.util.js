@@ -1,7 +1,7 @@
 // lay ip user
 const client = require('../configs/config.redis');
 
-const get = async (key) => {
+const get = async key => {
     return new Promise((resolve, reject) => {
         client.get(key, (err, data) => {
             if (err) {
@@ -10,8 +10,8 @@ const get = async (key) => {
 
             return resolve(data);
         });
-    })
-}
+    });
+};
 
 // co the set nhieu lan
 const set = async (key, value) => {
@@ -23,8 +23,8 @@ const set = async (key, value) => {
 
             resolve(data);
         });
-    })
-}
+    });
+};
 
 // set 1 lan duy nhat
 const setnx = async (key, value) => {
@@ -36,8 +36,8 @@ const setnx = async (key, value) => {
 
             resolve(data);
         });
-    })
-}
+    });
+};
 
 // cache tu dong tang with redis
 const incr = key => {
@@ -48,7 +48,7 @@ const incr = key => {
             resolve(result);
         });
     });
-}
+};
 
 const decrby = async (key, count) => {
     return new Promise((resolve, reject) => {
@@ -58,7 +58,7 @@ const decrby = async (key, count) => {
             resolve(result);
         });
     });
-}
+};
 
 // expire key redis
 const expire = (key, ttl) => {
@@ -69,10 +69,10 @@ const expire = (key, ttl) => {
             resolve(result);
         });
     });
-}
+};
 
 // get ttl thoi gian het han con lai
-const ttl = (key) => {
+const ttl = key => {
     return new Promise((resolve, reject) => {
         // method tu dong tang trong redis
         client.ttl(key, (err, ttl) => {
@@ -80,9 +80,9 @@ const ttl = (key) => {
             resolve(ttl);
         });
     });
-}
+};
 
-const exists = async (key) => {
+const exists = async key => {
     return new Promise((resolve, reject) => {
         // method tu dong tang trong redis
         client.exists(key, (err, data) => {
@@ -90,7 +90,7 @@ const exists = async (key) => {
             resolve(data);
         });
     });
-}
+};
 
 module.exports = {
     get,
@@ -101,4 +101,4 @@ module.exports = {
     expire,
     exists,
     ttl,
-}
+};

@@ -1,7 +1,7 @@
 const ProductConstant = {
     CLOTHING: 'CLOTHING',
     ELECTRONIC: 'ELECTRONIC',
-    FURNITURE:'FURNITURE'
-}
+    FURNITURE: 'FURNITURE',
+};
 
-module.exports = {ProductConstant}
+module.exports = { ProductConstant };

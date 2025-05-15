@@ -1,6 +1,6 @@
-const catchAsync = require('../helpers/catch.async')
-const {OK} = require("../core/success.response");
-const {CartService} = require("../services/cart.service");
+const catchAsync = require('../helpers/catch.async');
+const { OK } = require('../core/success.response');
+const { CartService } = require('../services/cart.service');
 
 /**
  * - Add product to cart - user
@@ -11,7 +11,6 @@ const {CartService} = require("../services/cart.service");
  * - delete cart item - user
  */
 class CartController {
-
     /**
      * @desc Add to cart for user
      *
@@ -20,9 +19,9 @@ class CartController {
      * @url /api/v1/cart
      * @return {}
      */
-    addToCart = catchAsync( async(req, res) => {
-        OK(res,  "Add to cart success", await CartService.addToCart(req.body))
-    })
+    addToCart = catchAsync(async (req, res) => {
+        OK(res, 'Add to cart success', await CartService.addToCart(req.body));
+    });
 
     /**
      * @desc Update to cart for user
@@ -32,9 +31,9 @@ class CartController {
      * @url /api/v1/cart
      * @return {}
      */
-    update = catchAsync( async(req, res) => {
-        OK(res,  "Update to cart success", await CartService.addToCartV2(req.body))
-    })
+    update = catchAsync(async (req, res) => {
+        OK(res, 'Update to cart success', await CartService.addToCartV2(req.body));
+    });
 
     /**
      * @desc Delete item in cart for user
@@ -44,9 +43,9 @@ class CartController {
      * @url /api/v1/cart
      * @return {}
      */
-    delete = catchAsync( async(req, res) => {
-        OK(res,  "Delete cart success", await CartService.deleteItemInCart(req.body))
-    })
+    delete = catchAsync(async (req, res) => {
+        OK(res, 'Delete cart success', await CartService.deleteItemInCart(req.body));
+    });
 
     /**
      * @desc Get cart for user
@@ -56,9 +55,9 @@ class CartController {
      * @url /api/v1/cart
      * @return {}
      */
-    listToCart = catchAsync( async(req, res) => {
-        OK(res,  "List cart success", await CartService.getListUserCart(req.query))
-    })
+    listToCart = catchAsync(async (req, res) => {
+        OK(res, 'List cart success', await CartService.getListUserCart(req.query));
+    });
 }
 
-module.exports = new CartController()
+module.exports = new CartController();

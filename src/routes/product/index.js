@@ -1,7 +1,7 @@
-const express = require('express')
-const router = express.Router()
-const productController = require('../../controllers/product.controller')
-const {authenticationV2} = require("../../auth/authUtils");
+const express = require('express');
+const router = express.Router();
+const productController = require('../../controllers/product.controller');
+const { authenticationV2 } = require('../../auth/authUtils');
 
 /**
  * @swagger
@@ -27,18 +27,17 @@ const {authenticationV2} = require("../../auth/authUtils");
  *           contents:
  *             application/json
  */
-router.get('/search/:keySearch', productController.searchProducts)
+router.get('/search/:keySearch', productController.searchProducts);
 
 const aliasSearch = (req, res, next) => {
-    req.query.page = '1'
-    req.query.limit = '5'
-    req.query.sort = '-name'
-    req.query.fields = 'name, price'
-    next()
-}
+    req.query.page = '1';
+    req.query.limit = '5';
+    req.query.sort = '-name';
+    req.query.fields = 'name, price';
+    next();
+};
 
-
-router.get('/advanced-search', aliasSearch, productController.advancedSearch)
+router.get('/advanced-search', aliasSearch, productController.advancedSearch);
 
 /**
  * @swagger
@@ -64,7 +63,7 @@ router.get('/advanced-search', aliasSearch, productController.advancedSearch)
  *           contents:
  *             application/json
  */
-router.get('/', productController.findAllProducts)
+router.get('/', productController.findAllProducts);
 /**
  * @swagger
  *   /api/v1/product/{product_id}:
@@ -89,11 +88,10 @@ router.get('/', productController.findAllProducts)
  *           contents:
  *             application/json
  */
-router.get('/:product_id', productController.findProduct)
-
+router.get('/:product_id', productController.findProduct);
 
 // authentication
-router.use(authenticationV2)
+router.use(authenticationV2);
 
 // after auth
 // product
@@ -113,7 +111,7 @@ router.use(authenticationV2)
  *           contents:
  *             application/json
  */
-router.post('', productController.createProduct)
+router.post('', productController.createProduct);
 
 /**
  * @swagger
@@ -138,7 +136,7 @@ router.post('', productController.createProduct)
  *           contents:
  *             application/json
  */
-router.patch('/:productId', productController.updateProduct)
+router.patch('/:productId', productController.updateProduct);
 
 /**
  * @swagger
@@ -163,7 +161,7 @@ router.patch('/:productId', productController.updateProduct)
  *           contents:
  *             application/json
  */
-router.put('/publish/:id', productController.publishProductByShop)
+router.put('/publish/:id', productController.publishProductByShop);
 
 // query
 /**
@@ -182,7 +180,7 @@ router.put('/publish/:id', productController.publishProductByShop)
  *           contents:
  *             application/json
  */
-router.get('/drafts/all', productController.getAllDraftsForShop)
+router.get('/drafts/all', productController.getAllDraftsForShop);
 /**
  * @swagger
  *   /api/v1/product/published/all:
@@ -199,7 +197,7 @@ router.get('/drafts/all', productController.getAllDraftsForShop)
  *           contents:
  *             application/json
  */
-router.get('/published/all', productController.getAllPublishedForShop)
+router.get('/published/all', productController.getAllPublishedForShop);
 
 // router
-module.exports = router
+module.exports = router;

@@ -1,17 +1,17 @@
-require('dotenv').config()
+require('dotenv').config();
 const nodeEnv = process.env.NODE_ENV;
 
 // config dotenv by environment
 require('dotenv').config({
-    path: `.env.${nodeEnv}`
-})
+    path: `.env.${nodeEnv}`,
+});
 
-console.log('ENV:::', nodeEnv, ' PORT:::', process.env.PORT)
+console.log('ENV:::', nodeEnv, ' PORT:::', process.env.PORT);
 const PORT = process.env.PORT || 3055;
 
 // start server nodejs
 const app = require('./src/app');
-const server =  app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`------::----${process.env.SERVICE_NAME} start with port ${PORT}`);
 });
 

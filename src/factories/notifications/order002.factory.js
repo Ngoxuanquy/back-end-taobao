@@ -1,13 +1,12 @@
-const {NotifyTypeConstant} = require("../../constants/notify-type.constant");
+const { NotifyTypeConstant } = require('../../constants/notify-type.constant');
 
 class Order002Factory {
-    async buildContent(options){
+    async buildContent(options) {
         // TODO: make content notify
-        return NotifyTypeConstant.ORDER_002
+        return NotifyTypeConstant.ORDER_002;
     }
-
 }
 
 module.exports = {
-    Order002Factory
-}
+    Order002Factory,
+};

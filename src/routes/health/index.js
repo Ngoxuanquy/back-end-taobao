@@ -1,6 +1,6 @@
-const express = require('express')
-const router = express.Router()
-const healthController = require('../../controllers/heath.controller')
+const express = require('express');
+const router = express.Router();
+const healthController = require('../../controllers/heath.controller');
 
 /**
  * @swagger
@@ -19,6 +19,6 @@ const healthController = require('../../controllers/heath.controller')
  *           contents:
  *             application/json
  */
-router.get('', healthController.healthcheck)
+router.get('', healthController.healthcheck);
 
-module.exports = router
+module.exports = router;

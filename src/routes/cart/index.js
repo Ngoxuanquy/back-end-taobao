@@ -1,11 +1,10 @@
-const express = require('express')
-const router = express.Router()
-const cartController = require('../../controllers/cart.controller')
-const {authenticationV2} = require("../../auth/authUtils");
+const express = require('express');
+const router = express.Router();
+const cartController = require('../../controllers/cart.controller');
+const { authenticationV2 } = require('../../auth/authUtils');
 
 // authentication
 // router.use(authenticationV2)
-
 
 /**
  * @swagger
@@ -30,7 +29,7 @@ const {authenticationV2} = require("../../auth/authUtils");
  *           contents:
  *             application/json
  */
-router.post('', cartController.addToCart)
+router.post('', cartController.addToCart);
 
 /**
  * @swagger
@@ -55,8 +54,7 @@ router.post('', cartController.addToCart)
  *           contents:
  *             application/json
  */
-router.delete('', cartController.delete)
-
+router.delete('', cartController.delete);
 
 /**
  * @swagger
@@ -81,7 +79,7 @@ router.delete('', cartController.delete)
  *           contents:
  *             application/json
  */
-router.put('', cartController.update)
+router.put('', cartController.update);
 
 /**
  * @swagger
@@ -107,7 +105,7 @@ router.put('', cartController.update)
  *           contents:
  *             application/json
  */
-router.get('', cartController.listToCart)
+router.get('', cartController.listToCart);
 
 // router
-module.exports = router
+module.exports = router;

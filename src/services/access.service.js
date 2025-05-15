@@ -91,6 +91,7 @@ class AccessService {
      */
     singIn = async ({email, password}) => {
         // 1.
+        console.log({email})
         const foundShop = await findByEmail({email})
         if (!foundShop) throw new Api403Error(i18n.translate('messages.error002'))
 
@@ -140,6 +141,7 @@ class AccessService {
 
     signUp = async ({name, email, password, msisdn}) => {
         // step1: check email exists?
+        console.log({name})
         const holderShop = await shopModel.findOne({email}).lean()
         console.log('locale:::', i18n.getLocale())
         if (holderShop) {

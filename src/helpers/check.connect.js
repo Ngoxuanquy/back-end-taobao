@@ -7,7 +7,7 @@ const SECONDS = 5000;
 const countConnect = () => {
     const numOfConnect = mongoose.connections.length;
     console.log(`Number of connections: ${numOfConnect}`);
-}
+};
 
 // check over load connect
 const checkOverload = () => {
@@ -25,11 +25,10 @@ const checkOverload = () => {
             console.log(`Connection overload detected!`);
             // notify.send(....)
         }
-
     }, SECONDS);
-}
+};
 
 module.exports = {
     countConnect,
-    checkOverload
-}
+    checkOverload,
+};

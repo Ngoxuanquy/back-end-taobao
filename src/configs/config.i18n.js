@@ -1,8 +1,10 @@
-const {I18n} = require('i18n')
-const path = require("path");
-const anyObject = {}
-const {i18n: {locales, defaultLocale}, app: {env}} = require('./config')
-
+const { I18n } = require('i18n');
+const path = require('path');
+const anyObject = {};
+const {
+    i18n: { locales, defaultLocale },
+    app: { env },
+} = require('./config');
 
 const i18n = new I18n({
     // setup some locales - other locales default to en silently
@@ -13,7 +15,7 @@ const i18n = new I18n({
     // fallback from Dutch to German and from any localized German (de-at, de-li etc.) to German
     fallbacks: {
         'en-nz': 'en',
-        'vi-vi': 'vi'
+        'vi-vi': 'vi',
     },
 
     // you may alter a site wide default locale
@@ -57,22 +59,22 @@ const i18n = new I18n({
 
     // setting of log level DEBUG - default to require('debug')('i18n:debug')
     logDebugFn: function (msg) {
-        console.log('debug', msg)
+        console.log('debug', msg);
     },
 
     // setting of log level WARN - default to require('debug')('i18n:warn')
     logWarnFn: function (msg) {
-        console.log('warn', msg)
+        console.log('warn', msg);
     },
 
     // setting of log level ERROR - default to require('debug')('i18n:error')
     logErrorFn: function (msg) {
-        console.log('error', msg)
+        console.log('error', msg);
     },
 
     // used to alter the behaviour of missing keys
     missingKeyFn: function (locale, value) {
-        return value
+        return value;
     },
 
     // object or [obj1, obj2] to bind the i18n api and current locale to - defaults to null
@@ -82,7 +84,7 @@ const i18n = new I18n({
     // note that this will *not* overwrite existing properties with the same name
     api: {
         __: 't', // now req.__ becomes req.t
-        __n: 'tn' // and req.__n can be called as req.tn
+        __n: 'tn', // and req.__n can be called as req.tn
     },
 
     // When set to true, downcase locale when passed on queryParam; e.g. lang=en-US becomes en-us.
@@ -104,15 +106,15 @@ const i18n = new I18n({
     // use mustache with customTags (https://www.npmjs.com/package/mustache#custom-delimiters) or disable mustache entirely
     mustacheConfig: {
         tags: ['{{', '}}'],
-        disable: false
+        disable: false,
     },
 
     // Parser can be any object that responds to .parse & .stringify
     parser: JSON,
 
-    directory: path.join(__dirname, "locales")
-})
+    directory: path.join(__dirname, 'locales'),
+});
 
-i18n.translate = (text, ...parameters) => i18n.translate(text, ...parameters)
+i18n.translate = (text, ...parameters) => i18n.translate(text, ...parameters);
 
-module.exports = i18n
+module.exports = i18n;

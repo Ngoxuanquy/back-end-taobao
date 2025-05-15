@@ -1,8 +1,8 @@
-const express = require('express')
-const router = express.Router()
-const accessController = require('../../controllers/access.controller')
-const {authenticationV2} = require("../../auth/authUtils");
-const validation = require('../../middleware/validators/access.validator')
+const express = require('express');
+const router = express.Router();
+const accessController = require('../../controllers/access.controller');
+const { authenticationV2 } = require('../../auth/authUtils');
+const validation = require('../../middleware/validators/access.validator');
 
 /**
  * @swagger
@@ -27,7 +27,7 @@ const validation = require('../../middleware/validators/access.validator')
  *           contents:
  *             application/json
  */
-router.post('/login', validation.validateLoginRequest, accessController.login)
+router.post('/login', validation.validateLoginRequest, accessController.login);
 /**
  * @swagger
  *   /api/v1/auth/register:
@@ -51,10 +51,10 @@ router.post('/login', validation.validateLoginRequest, accessController.login)
  *           contents:
  *             application/json
  */
-router.post('/register', validation.validateRegister, accessController.signUp)
+router.post('/register', validation.validateRegister, accessController.signUp);
 
 // authentication
-router.use(authenticationV2)
+router.use(authenticationV2);
 
 /**
  * @swagger
@@ -72,7 +72,7 @@ router.use(authenticationV2)
  *           contents:
  *             application/json
  */
-router.post('/logout', accessController.logout)
+router.post('/logout', accessController.logout);
 /**
  * @swagger
  *   /api/v1/auth/refresh-token:
@@ -89,6 +89,6 @@ router.post('/logout', accessController.logout)
  *           contents:
  *             application/json
  */
-router.post('/refresh-token', accessController.refreshToken)
+router.post('/refresh-token', accessController.refreshToken);
 
-module.exports = router
+module.exports = router;

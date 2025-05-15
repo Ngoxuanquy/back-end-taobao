@@ -1,5 +1,4 @@
-FROM node:latest
-LABEL authors="taduyhoang"
+FROM node:20.19.1-alpine
 
 WORKDIR /app
 
@@ -10,5 +9,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install --production --silent
 
 COPY . .
+
+EXPOSE 3055
 
 CMD ["npm", "run", "start"]

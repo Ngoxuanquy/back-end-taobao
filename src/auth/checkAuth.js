@@ -25,6 +25,7 @@ const apiKey = async (req, res, next) => {
         }
 
         req.objKey = objKey
+        console.log({objKey})
 
         return next()
     } catch (error) {
@@ -39,6 +40,7 @@ const permission = (permissions) => {
         if (!req.objKey.permissions) {
             return returnPermissionDenied(res);
         }
+        console.log({req})
 
         console.log("permissions::", req.objKey.permissions)
         const validPermission = req.objKey.permissions.includes(permissions)

@@ -1,9 +1,7 @@
-const express = require('express')
-const router = express.Router()
-const discountController = require('../../controllers/discount.controller')
-const {authenticationV2} = require("../../auth/authUtils");
-
-
+const express = require('express');
+const router = express.Router();
+const discountController = require('../../controllers/discount.controller');
+const { authenticationV2 } = require('../../auth/authUtils');
 
 /**
  * 1. Generator discount code [Shop | Admin]
@@ -29,7 +27,7 @@ const {authenticationV2} = require("../../auth/authUtils");
  *           contents:
  *             application/json
  */
-router.post('/amount', discountController.getDiscountAmount)
+router.post('/amount', discountController.getDiscountAmount);
 /**
  * @swagger
  *   /api/v1/discount/list-product-code:
@@ -46,10 +44,10 @@ router.post('/amount', discountController.getDiscountAmount)
  *           contents:
  *             application/json
  */
-router.get('/list-product-code', discountController.getAllDiscountCodeWithProduct)
+router.get('/list-product-code', discountController.getAllDiscountCodeWithProduct);
 
 // authentication
-router.use(authenticationV2)
+router.use(authenticationV2);
 
 /**
  * @swagger
@@ -68,7 +66,7 @@ router.use(authenticationV2)
  *           contents:
  *             application/json
  */
-router.post('', discountController.createDiscountCode)
+router.post('', discountController.createDiscountCode);
 /**
  * @swagger
  *   /api/v1/discount/:
@@ -86,7 +84,7 @@ router.post('', discountController.createDiscountCode)
  *           contents:
  *             application/json
  */
-router.get('', discountController.getAllDiscountCodesByShop)
+router.get('', discountController.getAllDiscountCodesByShop);
 /**
  * @swagger
  *   /api/v1/discount/:
@@ -104,7 +102,7 @@ router.get('', discountController.getAllDiscountCodesByShop)
  *           contents:
  *             application/json
  */
-router.get('/search/:keySearch', discountController.cancelDiscountCode)
+router.get('/search/:keySearch', discountController.cancelDiscountCode);
 /**
  * @swagger
  *   /api/v1/discount/:
@@ -122,7 +120,7 @@ router.get('/search/:keySearch', discountController.cancelDiscountCode)
  *           contents:
  *             application/json
  */
-router.get('/search/:keySearch', discountController.cancelDiscountCode)
+router.get('/search/:keySearch', discountController.cancelDiscountCode);
 
 // router
-module.exports = router
+module.exports = router;

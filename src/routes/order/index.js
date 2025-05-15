@@ -1,9 +1,7 @@
-const express = require('express')
-const router = express.Router()
-const orderController = require('../../controllers/order.controller')
-const {authenticationV2} = require("../../auth/authUtils");
-
-
+const express = require('express');
+const router = express.Router();
+const orderController = require('../../controllers/order.controller');
+const { authenticationV2 } = require('../../auth/authUtils');
 
 /**
  * 1. Create New Order [User]
@@ -13,9 +11,9 @@ const {authenticationV2} = require("../../auth/authUtils");
  * 5. Update Order Status [Admin]
  */
 
-router.post('review', orderController.checkoutReview)
+router.post('review', orderController.checkoutReview);
 
-router.post('', orderController.order)
+router.post('', orderController.order);
 
 // router
-module.exports = router
+module.exports = router;

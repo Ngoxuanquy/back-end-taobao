@@ -16,7 +16,8 @@ const apiKeySchema = new Schema({
     permissions: {
         type: [String],
         required: true,
-        enum: ['0000', '1111', '2222']
+        enum: ['0000', '1111', '2222'],
+        default: ['0000']
     }
 }, {
     timestamps: true,
