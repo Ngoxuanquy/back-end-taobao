@@ -1,0 +1,10 @@
+###
+POST http://localhost:3056/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ngo Xuan Quy",
+  "email": "quyquy1812@gmail.com",
+  "password": "123123a@",
+  "msisdn": "0948291994"
+}
